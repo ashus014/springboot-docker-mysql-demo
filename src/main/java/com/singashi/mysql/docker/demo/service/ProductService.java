@@ -1,14 +1,11 @@
 package com.singashi.mysql.docker.demo.service;
-
 import com.singashi.mysql.docker.demo.dao.ProductRepository;
 import com.singashi.mysql.docker.demo.entity.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -50,12 +47,12 @@ public class ProductService {
     }
 
     public Product updateProduct(Product product) {
+        logger.info("calling updateProduct...");
         Product existingProduct = repository.findById(product.getId()).orElse(null);
         existingProduct.setName(product.getName());
         existingProduct.setQuantity(product.getQuantity());
         existingProduct.setPrice(product.getPrice());
         return repository.save(existingProduct);
     }
-
 
 }
